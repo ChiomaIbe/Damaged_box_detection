@@ -2,3 +2,5 @@ venv/
 venv
 *Zone.Identifier
 node_modules
+npm-debug.log
+*.pyc
