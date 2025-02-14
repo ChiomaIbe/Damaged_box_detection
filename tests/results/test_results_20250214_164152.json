@@ -1,0 +1,161 @@
+{
+  "timestamp": "2025-02-14T16:41:44.805660",
+  "damaged_images": [
+    {
+      "filename": "images (12).jpg",
+      "processing_time": 0.23701763153076172,
+      "detections": []
+    },
+    {
+      "filename": "images_15.jpg",
+      "processing_time": 1.3386428356170654,
+      "detections": []
+    },
+    {
+      "filename": "images (14).jpg",
+      "processing_time": 0.25530004501342773,
+      "detections": []
+    },
+    {
+      "filename": "8.jpg",
+      "processing_time": 0.24618148803710938,
+      "detections": []
+    },
+    {
+      "filename": "7.jpg",
+      "processing_time": 0.36627769470214844,
+      "detections": []
+    },
+    {
+      "filename": "images 5.jpg",
+      "processing_time": 0.3193790912628174,
+      "detections": []
+    },
+    {
+      "filename": "63.jpg",
+      "processing_time": 0.39043354988098145,
+      "detections": []
+    },
+    {
+      "filename": "64.jpg",
+      "processing_time": 0.2310788631439209,
+      "detections": []
+    },
+    {
+      "filename": "WhatsApp Image 2025-02-14 at 11.05.46 AM (1).jpeg",
+      "processing_time": 0.30231738090515137,
+      "detections": []
+    },
+    {
+      "filename": "WhatsApp Image 2025-02-14 at 11.05.47 AM.jpeg",
+      "processing_time": 0.20934367179870605,
+      "detections": []
+    },
+    {
+      "filename": "WhatsApp Image 2025-02-14 at 11.05.46 AM (2).jpeg",
+      "processing_time": 0.25724315643310547,
+      "detections": []
+    },
+    {
+      "filename": "WhatsApp Image 2025-02-14 at 11.05.46 AM.jpeg",
+      "processing_time": 0.2619822025299072,
+      "detections": []
+    }
+  ],
+  "undamaged_images": [
+    {
+      "filename": "images.jpg",
+      "processing_time": 0.26061511039733887,
+      "detections": []
+    },
+    {
+      "filename": "65.jpg",
+      "processing_time": 0.23145604133605957,
+      "detections": []
+    },
+    {
+      "filename": "images (7).jpg",
+      "processing_time": 0.2316274642944336,
+      "detections": []
+    },
+    {
+      "filename": "images (8).jpg",
+      "processing_time": 0.2322845458984375,
+      "detections": []
+    },
+    {
+      "filename": "67.jpg",
+      "processing_time": 0.23483872413635254,
+      "detections": []
+    },
+    {
+      "filename": "66.jpg",
+      "processing_time": 0.24347782135009766,
+      "detections": []
+    },
+    {
+      "filename": "64.jpg",
+      "processing_time": 0.19610357284545898,
+      "detections": []
+    },
+    {
+      "filename": "images (9).jpg",
+      "processing_time": 0.29573607444763184,
+      "detections": []
+    },
+    {
+      "filename": "WhatsApp Image 2025-02-14 at 11.23.36 AM.jpeg",
+      "processing_time": 0.270721435546875,
+      "detections": []
+    },
+    {
+      "filename": "WhatsApp Image 2025-02-14 at 11.23.37 AM.jpeg",
+      "processing_time": 0.27197837829589844,
+      "detections": []
+    },
+    {
+      "filename": "WhatsApp Image 2025-02-14 at 11.23.36 AM (1).jpeg",
+      "processing_time": 0.2402186393737793,
+      "detections": [
+        {
+          "class_id": 0,
+          "confidence": 0.3191612958908081,
+          "bbox": [
+            99,
+            304371,
+            26293,
+            374884
+          ]
+        },
+        {
+          "class_id": 0,
+          "confidence": 0.36700260639190674,
+          "bbox": [
+            239,
+            304195,
+            27515,
+            372661
+          ]
+        },
+        {
+          "class_id": 0,
+          "confidence": 0.3222835063934326,
+          "bbox": [
+            143,
+            303637,
+            29541,
+            373078
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total_damaged": 12,
+    "total_undamaged": 11,
+    "true_positives": 0,
+    "false_positives": 1,
+    "avg_confidence_damaged": 0,
+    "avg_processing_time": 0.30975023559902026
+  }
+}
