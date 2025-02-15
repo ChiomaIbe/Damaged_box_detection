@@ -1,11 +1,16 @@
-from fastapi import APIRouter, WebSocket, HTTPException
+from fastapi import APIRouter, WebSocket, HTTPException, WebSocketDisconnect
 from models.detector import ObjectDetector
 import os
 import base64
-from typing import Optional
+from typing import Optional, Dict
 import logging
+import asyncio
+import json
 
 router = APIRouter()
+
+# Store active connections
+active_connections: Dict[WebSocket, bool] = {}
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -24,16 +29,37 @@ except Exception as e:
     logger.error(f"Failed to load model: {str(e)}")
     raise HTTPException(status_code=500, detail=f"Failed to initialize model: {str(e)}")
 
+async def heartbeat(websocket: WebSocket):
+    """Send periodic heartbeat to keep connection alive"""
+    try:
+        while active_connections.get(websocket, False):
+            await websocket.send_json({"type": "ping"})
+            await asyncio.sleep(30)  # Send heartbeat every 30 seconds
+    except Exception as e:
+        logger.error(f"Heartbeat error: {str(e)}")
+        active_connections[websocket] = False
+
 @router.websocket("/ws/detect")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
+    active_connections[websocket] = True
     logger.info("New WebSocket connection established")
     
+    # Start heartbeat task
+    heartbeat_task = asyncio.create_task(heartbeat(websocket))
+    
     try:
-        while True:
+        while active_connections.get(websocket, False):
             try:
-                # Receive frame as base64 string
-                frame_data = await websocket.receive_text()
+                # Receive data
+                data = await websocket.receive()
+                
+                # Handle heartbeat response
+                if data.get("type") == "text" and data.get("text") == "pong":
+                    continue
+                
+                # Get frame data
+                frame_data = data.get("text", "")
                 
                 if not frame_data:
                     logger.warning("Received empty frame data")
@@ -85,8 +111,25 @@ async def websocket_endpoint(websocket: WebSocket):
                     "error": "Communication error"
                 })
                 
+    except WebSocketDisconnect:
+        logger.info("WebSocket disconnected normally")
     except Exception as e:
         logger.error(f"WebSocket connection error: {str(e)}")
     finally:
+        # Clean up
+        active_connections[websocket] = False
+        heartbeat_task.cancel()
+        try:
+            await heartbeat_task
+        except asyncio.CancelledError:
+            pass
+        
+        if websocket in active_connections:
+            del active_connections[websocket]
+            
         logger.info("WebSocket connection closed")
-        await websocket.close()
+        try:
+            await websocket.close()
+        except RuntimeError:
+            # Connection might already be closed
+            pass
