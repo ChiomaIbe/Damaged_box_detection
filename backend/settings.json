@@ -1,0 +1,20 @@
+{
+  "settings_version": "0.0.6",
+  "datasets_dir": "/home/seyman/Damaged_box_detection/backend/datasets",
+  "weights_dir": "weights",
+  "runs_dir": "runs",
+  "uuid": "31939e39401139c4af601e0e6325863dc164550ad130ef23e0021a063ecbbed1",
+  "sync": true,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": true,
+  "comet": true,
+  "dvc": true,
+  "hub": true,
+  "mlflow": true,
+  "neptune": true,
+  "raytune": true,
+  "tensorboard": true,
+  "wandb": false,
+  "vscode_msg": true
+}
