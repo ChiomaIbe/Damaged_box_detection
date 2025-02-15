@@ -1,8 +1,8 @@
 {
   "settings_version": "0.0.6",
-  "datasets_dir": "/home/seyman/Damaged_box_detection/backend/datasets",
-  "weights_dir": "weights",
-  "runs_dir": "runs",
+  "datasets_dir": "/opt/render/project/src/backend/datasets",
+  "weights_dir": "/opt/render/project/src/backend/weights",
+  "runs_dir": "/opt/render/project/src/backend/runs",
   "uuid": "31939e39401139c4af601e0e6325863dc164550ad130ef23e0021a063ecbbed1",
   "sync": true,
   "api_key": "",
