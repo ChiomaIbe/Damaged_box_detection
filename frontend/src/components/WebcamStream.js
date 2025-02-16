@@ -60,7 +60,7 @@ const WebcamStream = ({ onDetectionsUpdate }) => {
     useEffect(() => {
         // Setup WebSocket connection
         const connectWebSocket = () => {
-            const ws = new WebSocket('ws://damaged-box-detection-1.onrender.com/ws/detect');
+            const ws = new WebSocket('ws://localhost:8000/ws/detect');
             
             ws.onopen = () => {
                 console.log('WebSocket Connected');
