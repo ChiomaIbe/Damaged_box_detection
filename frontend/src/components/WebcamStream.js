@@ -67,43 +67,25 @@ const WebcamStream = ({ onDetectionsUpdate }) => {
                 setIsConnected(true);
             };
 
-            ws.onclose = (event) => {
-                console.log('WebSocket Disconnected', event.code, event.reason);
+            ws.onclose = () => {
+                console.log('WebSocket Disconnected');
                 setIsConnected(false);
-                setIsRunning(false); // Stop detection on disconnect
                 // Attempt to reconnect after 2 seconds
                 setTimeout(connectWebSocket, 2000);
             };
 
-            ws.onerror = (error) => {
-                console.error('WebSocket Error:', error);
-                setIsConnected(false);
-                setIsRunning(false);
-            };
-
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
-                
-                // Handle heartbeat
-                if (data.type === 'ping') {
-                    ws.send(JSON.stringify({ type: 'pong' }));
-                    return;
-                }
-
                 if (data.error) {
                     console.error('Detection error:', data.error);
                     return;
                 }
                 
                 // Update detections and counts
-                if (data.status === 'success') {
-                    onDetectionsUpdate(data);
-                    
-                    // Draw detections on canvas if they exist
-                    if (data.detections) {
-                        drawDetections(data.detections);
-                    }
-                }
+                onDetectionsUpdate(data);
+                
+                // Draw detections on canvas
+                drawDetections(data.detections);
             };
 
             wsRef.current = ws;
