@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damaged Box Detection System - Infographic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1c20 0%, #2c3e50 100%);
+            padding: 2rem;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .header:hover {
+            transform: translateY(-5px);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #ecf0f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #ecf0f1;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .section {
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .section:hover::before {
+            transform: translateX(100%);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            color: #2ecc71;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section ul {
+            list-style-type: none;
+        }
+
+        .section li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: #ecf0f1;
+        }
+
+        .section li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .workflow {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(46, 204, 113, 0.1));
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .workflow-step {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 1.5rem;
+            border-radius: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .workflow-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .workflow-step h3 {
+            color: #e67e22;
+            margin-bottom: 0.5rem;
+        }
+
+        .workflow-step p {
+            color: #ecf0f1;
+        }
+
+        .workflow-step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #e67e22;
+            font-size: 1.5rem;
+            animation: moveArrow 1.5s infinite;
+        }
+
+        .examples {
+            grid-column: 1 / -1;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .examples h2 {
+            color: #2ecc71;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .example-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .example-card h3 {
+            color: #e67e22;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes moveArrow {
+            0% { transform: translate(0, -50%); }
+            50% { transform: translate(5px, -50%); }
+            100% { transform: translate(0, -50%); }
+        }
+
+        .tech-icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-grid, .example-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .workflow-step:not(:last-child)::after {
+                content: "↓";
+                position: absolute;
+                bottom: -2rem;
+                left: 50%;
+                transform: translateX(-50%);
+                right: auto;
+                top: auto;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Damaged Box Detection System</h1>
+            <p>A real-time computer vision solution for package condition monitoring</p>
+        </div>
+
+        <div class="grid">
+            <div class="section">
+                <h2><i class="fas fa-layer-group tech-icon"></i>System Architecture</h2>
+                <ul>
+                    <li>React.js Frontend with Material-UI</li>
+                    <li>FastAPI Backend Server</li>
+                    <li>YOLOv8 Object Detection Model</li>
+                    <li>WebRTC Camera Integration</li>
+                    <li>Real-time Processing Pipeline</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-star tech-icon"></i>Key Features</h2>
+                <ul>
+                    <li>Real-time Webcam Detection</li>
+                    <li>Box Damage Classification</li>
+                    <li>Damaged/Undamaged Box Counter</li>
+                    <li>REST API Endpoints</li>
+                    <li>Live Detection Visualization</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-code tech-icon"></i>Frontend Technologies</h2>
+                <ul>
+                    <li>React.js for UI Components</li>
+                    <li>Material-UI for Styling</li>
+                    <li>WebRTC for Camera Access</li>
+                    <li>Axios for API Communication</li>
+                    <li>Responsive Design</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-server tech-icon"></i>Backend Technologies</h2>
+                <ul>
+                    <li>FastAPI (Python Web Framework)</li>
+                    <li>ONNX Runtime Optimization</li>
+                    <li>OpenCV Image Processing</li>
+                    <li>YOLOv8 Neural Network</li>
+                    <li>RESTful API Architecture</li>
+                </ul>
+            </div>
+
+            <div class="section workflow">
+                <h2><i class="fas fa-project-diagram tech-icon"></i>Detection Workflow</h2>
+                <div class="workflow-grid">
+                    <div class="workflow-step">
+                        <h3>Input</h3>
+                        <p>Webcam Stream</p>
+                    </div>
+                    <div class="workflow-step">
+                        <h3>Processing</h3>
+                        <p>Image Pre-processing</p>
+                    </div>
+                    <div class="workflow-step">
+                        <h3>Detection</h3>
+                        <p>YOLOv8 Inference</p>
+                    </div>
+                    <div class="workflow-step">
+                        <h3>Output</h3>
+                        <p>Results Display</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section examples">
+                <h2><i class="fas fa-image tech-icon"></i>Detection Examples</h2>
+                <div class="example-grid">
+                    <div class="example-card">
+                        <img src="data:image/jpeg;base64,${damaged}" alt="Damaged Box">
+                        <h3>Damaged Box</h3>
+                    </div>
+                    <div class="example-card">
+                        <img src="data:image/jpeg;base64,${undamaged}" alt="Undamaged Box">
+                        <h3>Undamaged Box</h3>
+                    </div>
+                    <div class="example-card">
+                        <img src="data:image/jpeg;base64,${result}" alt="Detection Result">
+                        <h3>Detection Result</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

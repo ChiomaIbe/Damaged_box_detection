@@ -16,7 +16,7 @@ const Counter = ({ counts }) => {
             }}
         >
             <Grid container spacing={{ xs: 2, sm: 4 }} justifyContent="center">
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={4}>
                     <Box 
                         sx={{ 
                             textAlign: 'center',
@@ -41,7 +41,7 @@ const Counter = ({ counts }) => {
                         </Typography>
                     </Box>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={4}>
                     <Box 
                         sx={{ 
                             textAlign: 'center',
@@ -63,6 +63,31 @@ const Counter = ({ counts }) => {
                             sx={{ fontSize: { xs: '2rem', sm: '3rem' } }}
                         >
                             {counts?.damaged_box || 0}
+                        </Typography>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                    <Box 
+                        sx={{ 
+                            textAlign: 'center',
+                            padding: { xs: 1, sm: 2 },
+                            borderRadius: 1,
+                            bgcolor: '#f5f5f5'
+                        }}
+                    >
+                        <Typography 
+                            variant={isMobile ? "subtitle1" : "h6"} 
+                            color="text.primary"
+                            sx={{ fontSize: { xs: '0.9rem', sm: '1.25rem' } }}
+                        >
+                            Total Boxes
+                        </Typography>
+                        <Typography 
+                            variant={isMobile ? "h4" : "h3"} 
+                            color="text.primary"
+                            sx={{ fontSize: { xs: '2rem', sm: '3rem' } }}
+                        >
+                            {(counts?.box || 0) + (counts?.damaged_box || 0)}
                         </Typography>
                     </Box>
                 </Grid>
